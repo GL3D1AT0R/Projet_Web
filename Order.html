@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <style>
+       
+        header {
+            background-color: #333; 
+            width: 100%;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+
+        
+        .logo {
+            width: 50px; 
+            height: auto;
+            margin-right: 15px; 
+        }
+
+       
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        nav a:hover {
+            color: #66FF00; 
+        }
+
+        
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 80px; 
+            flex-direction: row; 
+            min-height: 100vh; 
+            flex-wrap: wrap; 
+        }
+        
+        
+        .order-details {
+            background-color: grey;
+            padding: 20px;
+            width: 45%;
+            border-radius: 5px;
+            margin-right: 20px; 
+        }
+        
+        
+        .form-container {
+            background-color: grey;
+            padding: 20px;
+            width: 45%;
+            border-radius: 5px;
+        }
+        
+        
+        button {
+            background-color: #66FF00;
+            color: black;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+
+        
+        footer {
+            margin-top: auto; 
+            background-color: #66FF00; 
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        .footer-text {
+            color: black;
+            font-size: 16px;
+        }
+    
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <img src="/Img/LOGO.png" alt="Logo" class="logo">
+            
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Our Products</a>
+                <a href="order.html">Check Orders</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="order-details">
+        <h2>Your Order Details</h2>
+        <img src="/Img/Tomato.jpg" alt="Tomato" style="width:50%; border-radius: 5px;">
+        <p>Price: D.T 15.00</p>
+        <p>Quantity: 5 KG</p>
+    </div>
+    
+    <div class="form-container">
+        <h2>Fill in Your Details</h2>
+        <form>
+            <label for="fname">First Name:*</label><br>
+            <input type="text" id="fname" name="fname" required><br><br>
+            
+            <label for="lname">Last Name:*</label><br>
+            <input type="text" id="lname" name="lname" required><br><br>
+            
+            <label for="address1">Address:*</label><br>
+            <input type="text" id="address1" name="address1" required><br><br>
+            
+            <label for="address2">Second Address:</label><br>
+            <input type="text" id="address2" name="address2"><br><br>
+            
+            <label for="phone">Phone Number:*</label><br>
+            <input type="tel" id="phone" name="phone" required><br><br>
+            
+            <label for="payment">Method of Payment:*</label><br>
+            <select id="payment" name="payment">
+                <option value="credit">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="D17">D17</option>
+                <option value="POD">Payment On Delivery</option>
+            </select><br><br>
+            
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-line"></div> 
+        <p class="footer-text">CropCortex© All Rights Reserved 2024</p>
+    </footer>
+
+</body>
+</html>
