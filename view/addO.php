@@ -31,6 +31,87 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="min.css">
     <script src="../view/scriptOrder.js"></script>
+
+    <style>
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: white;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        /* Table row styling */
+        td {
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        /* Label styling */
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Input fields styling */
+        input[type="text"], input[type="email"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        /* Focus effect on input fields */
+        input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Submit and reset button styling */
+        input[type="submit"], input[type="reset"] {
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for buttons */
+        input[type="submit"]:hover, input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Align buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body id="page-top">
     
@@ -115,54 +196,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <center>
      
     </center>
-        <div id="content">
+    <div class="form-container">
+        <h2 class="text-center">Add Order</h2>
 
-            <!-- Form for Adding Order -->
-            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();" novalidate>
+        <!-- Form for Adding Order -->
+        <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();" novalidate>
 
-                <table border="1" align="center">
-                    <tr>
-                        <td><label for="nom">Nom:</label></td>
-                        <td><input type="text" name="nom" id="nom" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="prenom">Prénom:</label></td>
-                        <td><input type="text" name="prenom" id="prenom" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="address">Adresse:</label></td>
-                        <td><input type="text" name="address" id="address" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="address2">Adresse 2:</label></td>
-                        <td><input type="text" name="address2" id="address2"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="email">Email:</label></td>
-                        <td><input type="email" name="email" id="email" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="phone">Téléphone:</label></td>
-                        <td><input type="text" name="phone" id="phone" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="payment">Méthode de paiement:</label></td>
-                        <td>
-                            <select name="payment" id="payment" >
-                                <option value="credit_card">Carte de Crédit</option>
-                                <option value="paypal">PayPal</option>
-                                <option value="cash">Espèces</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr align="center">
-                        <td><input type="submit" value="Save"></td>
-                        <td><input type="reset" value="Reset"></td>
-                    </tr>
-                </table>
-            </form>
+            <table>
+                <tr>
+                    <td><label for="nom">Nom:</label></td>
+                    <td><input type="text" name="nom" id="nom"></td>
+                </tr>
+                <tr>
+                    <td><label for="prenom">Prénom:</label></td>
+                    <td><input type="text" name="prenom" id="prenom"></td>
+                </tr>
+                <tr>
+                    <td><label for="address">Adresse:</label></td>
+                    <td><input type="text" name="address" id="address"></td>
+                </tr>
+                <tr>
+                    <td><label for="address2">Adresse 2:</label></td>
+                    <td><input type="text" name="address2" id="address2"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="email" name="email" id="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="phone">Téléphone:</label></td>
+                    <td><input type="text" name="phone" id="phone"></td>
+                </tr>
+                <tr>
+                    <td><label for="payment">Méthode de paiement:</label></td>
+                    <td>
+                        <select name="payment" id="payment">
+                            <option value="credit_card">Carte de Crédit</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="cash">Espèces</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
 
-        </div>
+            <div class="button-container">
+                <input type="submit" value="Save">
+                <input type="reset" value="Reset">
+            </div>
+
+        </form>
+    </div>
     </div>
 </div>
 <script> 

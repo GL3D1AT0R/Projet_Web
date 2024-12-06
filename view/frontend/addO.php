@@ -34,31 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    
 </head>
 <body>
-  <style>
-   .button-container {
-    display: flex;
-    justify-content: space-between; /* Space between buttons */
-    gap: 10px; /* Space between buttons */
-}
-
-input[type="submit"], input[type="reset"] {
-    width: 48%; /* Adjust width to fit side-by-side */
-    padding: 20px; /* Increased padding for larger buttons */
-    background-color: #66FF00; /* Default color */
-    border: none;
-    color: white;
-    font-size: 15px; /* Larger font size */
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 8px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-input[type="submit"]:hover, input[type="reset"]:hover {
-    background-color: #4CAF50; /* Hover color */
-}
-        
-  </style>
+  
    
 
         <aside class="sidebar">
@@ -118,54 +94,50 @@ input[type="submit"]:hover, input[type="reset"]:hover {
             </div>  
       
             <div class="form-container">
-    <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();" novalidate>
-        <table>
-            <tr>
-                <td><label for="nom">Nom:</label></td>
-                <td><input type="text" name="nom" id="nom"></td>
-            </tr>
-            <tr>
-                <td><label for="prenom">Prénom:</label></td>
-                <td><input type="text" name="prenom" id="prenom"></td>
-            </tr>
-            <tr>
-                <td><label for="address">Adresse:</label></td>
-                <td><input type="text" name="address" id="address"></td>
-            </tr>
-            <tr>
-                <td><label for="address2">Adresse 2:</label></td>
-                <td><input type="text" name="address2" id="address2"></td>
-            </tr>
-            <tr>
-                <td><label for="email">Email:</label></td>
-                <td><input type="email" name="email" id="email"></td>
-            </tr>
-            <tr>
-                <td><label for="phone">Téléphone:</label></td>
-                <td><input type="text" name="phone" id="phone"></td>
-            </tr>
-            <tr>
-                <td><label for="payment">Méthode de paiement:</label></td>
-                <td>
-                    <select name="payment" id="payment">
-                        <option value="credit_card">Carte de Crédit</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="cash">Espèces</option>
-                    </select>
-                </td>
-            </tr>
-            <tr align="center">
-                <td colspan="2">
-                    <div class="button-container">
-                        <input type="submit" value="Save">
-                        <input type="reset" value="Reset">
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();" novalidate>
 
+                <table border="1" align="center">
+                    <tr>
+                        <td><label for="nom">Nom:</label></td>
+                        <td><input type="text" name="nom" id="nom" ></td>
+                    </tr>
+                    <tr>
+                        <td><label for="prenom">Prénom:</label></td>
+                        <td><input type="text" name="prenom" id="prenom" ></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">Adresse:</label></td>
+                        <td><input type="text" name="address" id="address" ></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address2">Adresse 2:</label></td>
+                        <td><input type="text" name="address2" id="address2"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email:</label></td>
+                        <td><input type="email" name="email" id="email" ></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phone">Téléphone:</label></td>
+                        <td><input type="text" name="phone" id="phone" ></td>
+                    </tr>
+                    <tr>
+                        <td><label for="payment">Méthode de paiement:</label></td>
+                        <td>
+                            <select name="payment" id="payment" >
+                                <option value="credit_card">Carte de Crédit</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="cash">Espèces</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td><input type="submit" value="Save"></td>
+                        <td><input type="reset" value="Reset"></td>
+                    </tr>
+                </table>
+            </form>
+            </div>
         </div>
     </main>
 

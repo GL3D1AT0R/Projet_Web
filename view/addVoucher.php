@@ -1,85 +1,112 @@
 <?php
-include '../controller/itemC.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include '../controller/voucherC.php';
 
-$itemController = new ItemController();
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-$sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : '';
+$voucherManager = new VoucherV();
 
-if (!empty($searchTerm)) {
-    $items = $itemController->search($searchTerm);
-} elseif (!empty($sortOrder)) {
-    $items = $itemController->sort($sortOrder);
-} else {
-    $items = $itemController->listItems();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $code = $_POST['code'];
+    $perc = $_POST['perc'];
+   
+
+        $voucher = new Voucher($code, $perc);
+        $voucherManager->addVoucher($voucher);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Items</title>
-    <link href="styles.css" rel="stylesheet">
-    <script src="../view/scriptItem.js"></script>
+    <title>Add Voucher</title>
+    <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template -->
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="min.css">
+    <script src="../view/scriptOrder.js"></script>
+
+
     <style>
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: calc(100vh - 100px);
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f8ff;
+            margin: 0;
+            padding: 0;
         }
 
+        /* Form container styling */
+        .form-container {
+            background-color: white;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table styling */
         table {
-            border-collapse: collapse;
-            width: 80%;
+            width: 100%;
             margin-top: 20px;
+            border-collapse: collapse;
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        /* Table row styling */
+        td {
+            padding: 10px;
             text-align: left;
+            font-size: 16px;
         }
 
-        th {
-            background-color: #f2f2f2;
+        /* Label styling */
+        label {
+            font-weight: bold;
             color: #333;
         }
 
-        tr:hover {
-            background-color: #f1f1f1;
+        /* Input fields styling */
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
         }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
+        /* Focus effect on input fields */
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .button-container {
-            margin-top: 20px;
-        }
-
-        button {
+        /* Submit and reset button styling */
+        input[type="submit"], input[type="reset"] {
             background-color: #007bff;
             color: white;
-            padding: 10px 15px;
+            font-size: 16px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        button:hover {
+        /* Hover effect for buttons */
+        input[type="submit"]:hover, input[type="reset"]:hover {
             background-color: #0056b3;
+        }
+
+        /* Align buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -108,15 +135,6 @@ if (!empty($searchTerm)) {
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
-        <div class="input-group-prepend">
-        <form action="listItem.php" method="GET" class="search-container mb-4">
-            <input type="text" name="search" class="form-control" placeholder="Search by quantity" value="<?= htmlspecialchars($searchTerm) ?>">
-            
-            <!-- Search Button -->
-            <button class="btn btn-primary" type="submit">Search</button>
-           
-        </form>
-    </div>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -179,52 +197,35 @@ if (!empty($searchTerm)) {
                 </button>
             </nav>
     <!-- Centered heading and link to add a new order -->
-    <main>
-   
-        <h1>List of Items</h1>
-        <div class="button-container">
-            <button><a href="addItem.php" style="color: white;">Add New Item</a></button>
-        </div>
-        <br>
-        <div>
-  <form method="GET" action="listItem.php">
-    <button type="submit" name="sortOrder" value="niveau_asc" class="btn btn-primary">Sort by price (Asc)</button>
-    <button type="submit" name="sortOrder" value="niveau_desc" class="btn btn-primary">Sort by price (Desc)</button>
-  </form>
-</div>
-        <table>
-            <thead>
+    <center>
+     
+    </center>
+    <div class="form-container">
+        <h2 class="text-center">Add Voucher</h2>
+
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            <table>
                 <tr>
-                    <th>Item ID</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Order ID</th>
-                    <th>Product ID</th>
-                    <th>Actions</th>
+                    <td><label for="code">Voucher Code:</label></td>
+                    <td><input type="text" name="code" id="code"></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($items)) : ?>
-                    <?php foreach ($items as $item) : ?>
-                        <tr>
-                            <td><?php echo $item['itemid']; ?></td>
-                            <td><?php echo $item['quantity']; ?></td>
-                            <td><?php echo $item['price']; ?></td>
-                            <td><?php echo $item['orderid_fk']; ?></td>
-                            <td><?php echo $item['productid_fk']; ?></td>
-                            <td>
-                                <a href="updateItem.php?itemid=<?php echo $item['itemid']; ?>" class="btn btn-primary">Edit</a> |
-                                <a href="deleteItem.php?itemid=<?php echo $item['itemid']; ?>"  class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center;">No items found</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </main>
+                <tr>
+                    <td><label for="perc">Discount Percentage:</label></td>
+                    <td><input type="number" name="perc" id="perc"></td>
+                </tr>
+            </table>
+
+            <div class="button-container">
+                <input type="submit" value="Save">
+                <input type="reset" value="Reset">
+            </div>
+
+        </form>
+    </div>
+
+    </div>
+</div>
+
 </body>
 </html>

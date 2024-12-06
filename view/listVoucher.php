@@ -1,17 +1,9 @@
 <?php
-include '../controller/itemC.php';
+include '../controller/voucherC.php';
 
-$itemController = new ItemController();
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-$sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : '';
+$voucherController = new VoucherV();
 
-if (!empty($searchTerm)) {
-    $items = $itemController->search($searchTerm);
-} elseif (!empty($sortOrder)) {
-    $items = $itemController->sort($sortOrder);
-} else {
-    $items = $itemController->listItems();
-}
+    $vouchers = $voucherController->listVouchers();
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +11,7 @@ if (!empty($searchTerm)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Items</title>
+    <title>List Vouchers</title>
     <link href="styles.css" rel="stylesheet">
     <script src="../view/scriptItem.js"></script>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -109,13 +101,7 @@ if (!empty($searchTerm)) {
                 <span>Dashboard</span></a>
         </li>
         <div class="input-group-prepend">
-        <form action="listItem.php" method="GET" class="search-container mb-4">
-            <input type="text" name="search" class="form-control" placeholder="Search by quantity" value="<?= htmlspecialchars($searchTerm) ?>">
-            
-            <!-- Search Button -->
-            <button class="btn btn-primary" type="submit">Search</button>
-           
-        </form>
+      
     </div>
 
         <!-- Divider -->
@@ -181,46 +167,34 @@ if (!empty($searchTerm)) {
     <!-- Centered heading and link to add a new order -->
     <main>
    
-        <h1>List of Items</h1>
+        <h1>List of Vouchers</h1>
         <div class="button-container">
-            <button><a href="addItem.php" style="color: white;">Add New Item</a></button>
+            <button><a href="addVoucher.php" style="color: white;">Add New  Voucher</a></button>
         </div>
         <br>
-        <div>
-  <form method="GET" action="listItem.php">
-    <button type="submit" name="sortOrder" value="niveau_asc" class="btn btn-primary">Sort by price (Asc)</button>
-    <button type="submit" name="sortOrder" value="niveau_desc" class="btn btn-primary">Sort by price (Desc)</button>
-  </form>
-</div>
-        <table>
+            <table>
             <thead>
                 <tr>
-                    <th>Item ID</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Order ID</th>
-                    <th>Product ID</th>
+                    <th>Code</th>
+                    <th>Percentage</th>
+                
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($items)) : ?>
-                    <?php foreach ($items as $item) : ?>
+                <?php if (!empty($vouchers)) : ?>
+                    <?php foreach ($vouchers as $voucher) : ?>
                         <tr>
-                            <td><?php echo $item['itemid']; ?></td>
-                            <td><?php echo $item['quantity']; ?></td>
-                            <td><?php echo $item['price']; ?></td>
-                            <td><?php echo $item['orderid_fk']; ?></td>
-                            <td><?php echo $item['productid_fk']; ?></td>
+                            <td><?php echo $voucher['code']; ?></td>
+                            <td><?php echo $voucher['perc']; ?></td>
                             <td>
-                                <a href="updateItem.php?itemid=<?php echo $item['itemid']; ?>" class="btn btn-primary">Edit</a> |
-                                <a href="deleteItem.php?itemid=<?php echo $item['itemid']; ?>"  class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                <a href="deleteVoucher.php?code=<?php echo $voucher['code']; ?>" class="btn btn-primary" onclick="return confirm('Are you sure you want to delete this voucher?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <tr>
-                        <td colspan="6" style="text-align: center;">No items found</td>
+                        <td colspan="6" style="text-align: center;">No vouchers found</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

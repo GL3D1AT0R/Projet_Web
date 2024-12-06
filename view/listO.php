@@ -5,7 +5,16 @@ ini_set('display_errors', 1);
 include '../controller/orderC.php';
 
 $OrderController = new OrderP();
-$orders = $OrderController->listOrders(); 
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+$sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : '';
+
+if (!empty($searchTerm)) {
+    $orders = $OrderController->search($searchTerm);
+} elseif (!empty($sortOrder)) {
+    $orders = $OrderController->sort($sortOrder);
+} else {
+    $orders = $OrderController->listOrders(); 
+}
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +122,15 @@ $orders = $OrderController->listOrders();
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
-
+        <div class="input-group-prepend">
+        <form action="listO.php" method="GET" class="search-container mb-4">
+            <input type="text" name="search" class="form-control" placeholder="Search by nom" value="<?= htmlspecialchars($searchTerm) ?>">
+            
+            <!-- Search Button -->
+            <button class="btn btn-primary" type="submit">Search</button>
+           
+        </form>
+    </div>
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -135,6 +152,13 @@ $orders = $OrderController->listOrders();
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Gestion Items</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="listVoucher.php" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Gestion Vouchers</span>
         </a>
     </li>
         <!-- Divider -->
@@ -173,9 +197,14 @@ $orders = $OrderController->listOrders();
         <div class="button-container">
             <button><a href="addO.php" style="color: white;">Add New Order</a></button>
         </div>
-    </center>
+<br> <br>
+    <div>
+  <form method="GET" action="listO.php">
+    <button type="submit" name="sortOrder" value="niveau_asc" class="btn btn-primary">Sort by prenom (Asc)</button>
+    <button type="submit" name="sortOrder" value="niveau_desc" class="btn btn-primary">Sort by prenom (Desc)</button>
+  </form>
+</div>     </center>
 
-    <!-- Table displaying orders -->
     <table border="1" align="center" width="70%">
         <thead>
             <tr>
@@ -206,14 +235,14 @@ $orders = $OrderController->listOrders();
                     <!-- Update button -->
                     <td align="center">
                         <form method="POST" action="editO.php">
-                            <input type="submit" name="update" value="Update" class="button-link">
+                            <input type="submit" name="update" value="Update" class="btn btn-primary">
                             <input type="hidden" value="<?= $order['id']; ?>" name="id">
                         </form>
                     </td>
 
                     <!-- Delete button -->
                     <td>
-                    <a href="deleteO.php?id=<?php echo $order['id']; ?>">Delete</a>
+                    <a href="deleteO.php?id=<?php echo $order['id']; ?> " class="btn btn-primary">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

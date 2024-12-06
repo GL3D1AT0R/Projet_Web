@@ -2,6 +2,7 @@
 
 include 'C:\xampp\htdocs\projetghaith\config2.php';
 include 'C:\xampp\htdocs\projetghaith\model\item.php';
+include 'C:\xampp\htdocs\projetghaith\controller\orderC.php';
 
 class ItemController
 {
@@ -130,5 +131,42 @@ public function listItemsJ()
         return [];
     }
 }
+public function search($searchTerm)
+{
+    $sql = "SELECT * FROM items WHERE quantity LIKE :searchTerm";
+    $db = config2::getConnexion();
+    try {
+        $query = $db->prepare($sql);
+        $query->execute(['searchTerm' => '%' . $searchTerm . '%']);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}
 
+function sort($sortOrder = '')
+{
+$sql = "SELECT * FROM items";
+if ($sortOrder) {
+    switch ($sortOrder) {
+        case 'niveau_asc':
+            $sql .= " ORDER BY price ASC"; 
+            break;
+        case 'niveau_desc':
+            $sql .= " ORDER BY price DESC"; 
+            break;
+        default:
+            break;
+    }
+}
+
+$db = config2::getConnexion();
+try {
+    $query = $db->query($sql);
+    $cours = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $cours; 
+} catch (Exception $e) {
+    echo 'Error: ' . $e->getMessage();
+}
+}
 }

@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 include '../../controller/itemC.php';
 
 // Get the order ID from the query string
-$orderid = $_GET['id']; // The order ID passed from the previous page
+$orderid = $_GET['id']; 
 
 // Create an instance of ItemController
 $ItemController = new ItemController();
@@ -48,7 +48,7 @@ $items = $ItemController->listItemsByOrder($orderid);
 
         .order-card h3 {
             margin-bottom: 15px;
-            color: #66FF00;
+            color: #333;
         }
 
         .order-card p {
@@ -64,7 +64,7 @@ $items = $ItemController->listItemsByOrder($orderid);
             padding: 10px 15px;
             color: white;
             border-radius: 5px;
-            background-color: #66FF00; 
+            background-color: #ff6347; /* Tomato color for delete button */
             transition: background-color 0.3s ease;
         }
 
@@ -72,7 +72,7 @@ $items = $ItemController->listItemsByOrder($orderid);
             background-color: #ff4500; /* Darker tomato color */
         }
     </style>
-     <style>
+    <style>
         /* Add your styles here */
         .item-container {
             display: flex;
@@ -84,7 +84,7 @@ $items = $ItemController->listItemsByOrder($orderid);
 
         .item-card {
             width: 70%;
-            background-color: #2a2a2a; /* Transparent white background */
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -93,7 +93,7 @@ $items = $ItemController->listItemsByOrder($orderid);
 
         .item-card h3 {
             margin-bottom: 15px;
-            color: #66FF00;
+            color: #333;
         }
 
         .item-card p {
@@ -109,7 +109,7 @@ $items = $ItemController->listItemsByOrder($orderid);
             padding: 10px 15px;
             color: white;
             border-radius: 5px;
-            background-color: #66FF00; /* Tomato color for delete button */
+            background-color: #ff6347; /* Tomato color for delete button */
             transition: background-color 0.3s ease;
         }
 
@@ -117,13 +117,12 @@ $items = $ItemController->listItemsByOrder($orderid);
             background-color: #ff4500; /* Darker tomato color */
         }
     </style>
-   
 </head>
 
 <body>
     
 
-   <aside class="sidebar">
+<aside class="sidebar">
             <div class="header-container">
                 <div class="Logo">
                     <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/main/main.html">
@@ -166,12 +165,13 @@ $items = $ItemController->listItemsByOrder($orderid);
             <div class="cart-icon">
                 <a href="listO.php">
     <img src="panier .png" alt="panier" height="40px" width="40px">
-                </a>
+</a>
                 </a>
             </div>    
         </header>
      
       
+            <div class="form-container">
     
 
         <center>
@@ -222,6 +222,7 @@ $items = $ItemController->listItemsByOrder($orderid);
             });
         });
     </script>
+    <script> 
 </body>
 
 </html>

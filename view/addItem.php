@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include '../controller/itemC.php';
-include '../controller/orderC.php'; // Include controller for orders
+require_once '../controller/orderC.php'; // Include controller for orders
 
 $itemManager = new ItemController();
 $orderManager = new OrderP(); // Assuming you have a controller for orders
@@ -50,6 +50,106 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Custom styles for this template -->
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="min.css">
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table and Form Styling */
+        .form-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .form-table td {
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        .form-label {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            margin-top: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #4e73df;
+            outline: none;
+        }
+
+        /* Button Styling */
+        .btn-submit, .btn-reset {
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #2e59d9;
+        }
+
+        .btn-reset {
+            background-color: #f8f9fc;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-reset:hover {
+            background-color: #e2e6ea;
+        }
+
+        /* Link Styling */
+        .button-link {
+            color: #4e73df;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .button-link:hover {
+            color: #2e59d9;
+            text-decoration: underline;
+        }
+
+        /* Centering and General Layout */
+        center {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -122,7 +222,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -130,44 +229,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </button>
         </nav>
 <!-- Centered heading and link to add a new order -->
-    <div id="content">
-        <center>
-            <h4><a href="addItem.php" class="button-link">Ajouter un Item</a></h4>
-        </center>
-        <form action="" method="POST" onsubmit="return validateForm();" novalidate>
-            <table border="1" align="center">
-                <tr>
-                    <td><label for="quantity">Quantity:</label></td>
-                    <td><input type="number" name="quantity" id="quantity" min="1"></td>
-                </tr>
-                <tr>
-                    <td><label for="price">Price:</label></td>
-                    <td><input type="number" name="price" id="price" step="0.01" min="0.01"></td>
-                </tr>
-                <tr>
-                    <td><label for="orderid_fk">Order:</label></td>
-                    <td>
-                        <select name="orderid_fk" id="orderid_fk">
-                            <option value="">Select an Order</option>
-                            <?php foreach ($orders as $order) : ?>
-                                <option value="<?php echo $order['id']; ?>">
-                                    <?php echo htmlspecialchars($order['nom']); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="productid_fk">Product ID:</label></td>
-                    <td><input type="number" name="productid_fk" id="productid_fk"></td>
-                </tr>
-                <tr align="center">
-                    <td><input type="submit" value="Save"></td>
-                    <td><input type="reset" value="Reset"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+<div id="content">
+
+<!-- Centered heading and link to add a new order -->
+<center>
+    <h4><a href="addItem.php" class="button-link">Ajouter un Item</a></h4>
+</center>
+
+<form action="" method="POST" onsubmit="return validateForm();" novalidate>
+    <table class="form-table">
+        <tr>
+            <td><label for="quantity" class="form-label">Quantity:</label></td>
+            <td><input type="number" name="quantity" id="quantity" class="form-input" min="1"></td>
+        </tr>
+        <tr>
+            <td><label for="price" class="form-label">Price:</label></td>
+            <td><input type="number" name="price" id="price" class="form-input" step="0.01" min="0.01"></td>
+        </tr>
+        <tr>
+            <td><label for="orderid_fk" class="form-label">Order:</label></td>
+            <td>
+                <select name="orderid_fk" id="orderid_fk" class="form-input">
+                    <option value="">Select an Order</option>
+                    <?php foreach ($orders as $order) : ?>
+                        <option value="<?php echo $order['id']; ?>">
+                            <?php echo htmlspecialchars($order['nom']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="productid_fk" class="form-label">Product ID:</label></td>
+            <td><input type="number" name="productid_fk" id="productid_fk" class="form-input"></td>
+        </tr>
+        <tr align="center">
+            <td><input type="submit" class="btn-submit" value="Save"></td>
+            <td><input type="reset" class="btn-reset" value="Reset"></td>
+        </tr>
+    </table>
+</form>
+</div>
+</div>
     <script>
         function validateForm() {
             var quantity = document.getElementById('quantity').value;
