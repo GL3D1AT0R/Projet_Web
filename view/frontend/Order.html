@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropCortex E-commerce</title>
+    <link rel="stylesheet" href="Order.css">
+
+   
+</head>
+<body>
+  
+   
+
+        <aside class="sidebar">
+            <div class="header-container">
+                <div class="Logo">
+                    <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/main/main.html">
+                    <img src="logo site.png" alt="logo" height="90px" width="90px"> 
+                    </a>
+                </div>
+                <div class="User">
+                    <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/user/user.html">
+                    <img src="user.png" alt="user" height="60px" width="60px">
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <span class="menu-item has-submenu">Go Back ▾</span>
+                        <ul class="submenuL">
+                            <li>Home</li>
+                            <li>Prix</li>
+                            <li>Stock</li>
+                            <li>Order</li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+            <footer>
+                <p>© 2024 CROPCORTEX. All rights reserved.</p>
+            </footer>
+        </aside>
+        
+    
+        
+    
+
+   
+    <main>
+    
+        <header class="header">
+            <input type="text" placeholder="What are you looking for?" class="search-bar">
+            <div class="search-icon">
+                <img src="search.png" alt="search" height="40px" width="40px">
+            </div>
+            <div class="cart-icon">
+                <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/panier/panier.html">
+                <img src="panier .png" alt="panier" height="40px" width="40px">
+                </a>
+            </div>    
+        </header>
+        <div class="main">
+            <div class="order-details">
+                <h2>Your Order Details</h2>
+                <img src="totamte.png" alt="Tomato" style="width:50%; border-radius: 5px;">
+                <p>Price: D.T 3.00</p>
+                <h3>1 Kg</h3>
+                
+            </div>
+            
+            <div class="form-container">
+                <h2>Fill in Your Details</h2>
+                <form action="/Order.php" method="post">
+                    <label for="fname">First Name:*</label><br>
+                    <input type="text" id="fname" name="fname" maxlength="10" required><br><br>
+                    
+                    <label for="lname">Last Name:*</label><br>
+                    <input type="text" id="lname" name="lname" maxlength="10" required><br><br>
+                    
+                    <label for="address1">Address:*</label><br>
+                    <input type="text" id="address1" name="address1" maxlength="10" required><br><br>
+                    
+                    <label for="address2">Second Address:</label><br>
+                    <input type="text" id="address2" name="address2" maxlength="10"><br><br>
+
+                    <label for="Email">Email Adress:*</label><br>
+                    <input type="email" id="Email" name="Email" placeholder="azeryui@azer"><br><br>
+                    
+                    <label for="phone">Phone Number:*</label><br>
+                    <input type="tel" id="phone" name="phone" maxlength="8" placeholder="22222222"  ><br><br>
+                    
+                    <label for="payment">Method of Payment:*</label><br>
+                    <select id="payment" name="payment">
+                        <option value="credit">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="D17">D17</option>
+                        <option value="POD">Payment On Delivery</option>
+                    </select><br><br>
+                    
+                    <button type="submit">Submit Order</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const submenus = document.querySelectorAll(".has-submenu");
+            
+            submenus.forEach(menu => {
+                menu.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    const submenu = this.nextElementSibling;
+                    submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

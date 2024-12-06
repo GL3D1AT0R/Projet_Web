@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropCortex E-commerce</title>
+    <link rel="stylesheet" href="Order.css">
+
+   
+<style type="text/css" id="operaUserStyle"></style></head>
+
+<body>
+  <style>
+  
+  </style>
+   
+
+        <aside class="sidebar">
+            <div class="header-container">
+                <div class="Logo">
+                    <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/main/main.html">
+                    <img src="./Template_files/logo site.png" alt="logo" height="90px" width="90px"> 
+                    </a>
+                </div>
+                <div class="User">
+                    <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/user/user.html">
+                    <img src="./Template_files/user.png" alt="user" height="60px" width="60px">
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <span class="menu-item has-submenu">Go Back ▾</span>
+                        <ul class="submenuL">
+                            <li>Home</li>
+                            <li>Prix</li>
+                            <li>Stock</li>
+                            <li>Order</li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+            <footer>
+                <p>© 2024 CROPCORTEX. All rights reserved.</p>
+            </footer>
+        </aside>
+        
+    
+        
+    
+
+   
+    <main>
+    
+        <header class="header">
+            <input type="text" placeholder="What are you looking for?" class="search-bar">
+            <div class="search-icon">
+                <img src="./Template_files/search.png" alt="search" height="40px" width="40px">
+            </div>
+            <div class="cart-icon">
+                <a href="file:///C:/Users/yomna/OneDrive/Bureau/2A14/projet%20web/frontend%20produit/panier/panier.html">
+                <img src="./Template_files/panier .png" alt="panier" height="40px" width="40px">
+                </a>
+            </div>    
+        </header>
+
+        <div class="main2" >
+                 <div class="Order-placed" >
+                     <img src="/OrderPlaced.png" alt="OrderPlaced" id="imgOrderPlaced" height="150px"> <br><br>
+                     <h2>Thank you for your purchase !!</h2>
+                     <h3>Your Order ID is #5465454</h3>
+                     <h3>We Will Contact you soon..</h3>
+                     <a href="index.html"><button style="margin-top: 20px; color: black ; font-size: 25px; border-radius: 15px;">Back To Shopping</button></a>
+    
+                 </div>   
+
+        </div>
+        
+    </main>
+   
+
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const submenus = document.querySelectorAll(".has-submenu");
+            
+            submenus.forEach(menu => {
+                menu.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    const submenu = this.nextElementSibling;
+                    submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+                });
+            });
+        });
+    </script>
+
+
+</body></html>
