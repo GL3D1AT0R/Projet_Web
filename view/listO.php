@@ -216,8 +216,12 @@ if (!empty($searchTerm)) {
                 <th>Email</th>
                 <th>Téléphone</th>
                 <th>Mode de Paiement</th>
+                
+                <th>Final price</th>
+                <th>Status</th>
                 <th>Update</th>
                 <th>Delete</th>
+            
             </tr>
         </thead>
         <tbody>
@@ -231,6 +235,8 @@ if (!empty($searchTerm)) {
                     <td><?= $order['email']; ?></td>
                     <td><?= $order['phone']; ?></td>
                     <td><?= $order['payment']; ?></td>
+                    <td><?= $order['final_price']; ?></td>
+                    <td><?= $order['status']; ?></td>
 
                     <!-- Update button -->
                     <td align="center">

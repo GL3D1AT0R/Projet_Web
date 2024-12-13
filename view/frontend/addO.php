@@ -30,7 +30,82 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CropCortex E-commerce</title>
     <link rel="stylesheet" href="Order.css">
+<style>
+    .form-container {
+            width: 100%;
+            max-width: 600px;
+            background: #4b4b4b;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
 
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007BFF;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .form-actions .btn-submit {
+            background-color: #66FF00;
+        }
+
+        .form-actions .btn-submit:hover {
+            background-color: #98ff53;
+        }
+
+        .form-actions .btn-reset {
+            background-color: #dc3545;
+        }
+
+        .form-actions .btn-reset:hover {
+            background-color: #c82333;
+        }
+
+</style>
    
 </head>
 <body>
@@ -94,50 +169,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>  
       
             <div class="form-container">
-            <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();" novalidate>
-
-                <table border="1" align="center">
-                    <tr>
-                        <td><label for="nom">Nom:</label></td>
-                        <td><input type="text" name="nom" id="nom" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="prenom">Prénom:</label></td>
-                        <td><input type="text" name="prenom" id="prenom" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="address">Adresse:</label></td>
-                        <td><input type="text" name="address" id="address" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="address2">Adresse 2:</label></td>
-                        <td><input type="text" name="address2" id="address2"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="email">Email:</label></td>
-                        <td><input type="email" name="email" id="email" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="phone">Téléphone:</label></td>
-                        <td><input type="text" name="phone" id="phone" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="payment">Méthode de paiement:</label></td>
-                        <td>
-                            <select name="payment" id="payment" >
-                                <option value="credit_card">Carte de Crédit</option>
-                                <option value="paypal">PayPal</option>
-                                <option value="cash">Espèces</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr align="center">
-                        <td><input type="submit" value="Save"></td>
-                        <td><input type="reset" value="Reset"></td>
-                    </tr>
-                </table>
-            </form>
+        <h2>Registration Form</h2>
+        <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();" novalidate>
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom">
             </div>
+
+            <div class="form-group">
+                <label for="prenom">Prénom:</label>
+                <input type="text" name="prenom" id="prenom">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Adresse:</label>
+                <input type="text" name="address" id="address">
+            </div>
+
+            <div class="form-group">
+                <label for="address2">Adresse 2:</label>
+                <input type="text" name="address2" id="address2">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Téléphone:</label>
+                <input type="text" name="phone" id="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Méthode de paiement:</label>
+                <select name="payment" id="payment">
+                    <option value="credit_card">Carte de Crédit</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="cash">Espèces</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Save</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
         </div>
     </main>
 

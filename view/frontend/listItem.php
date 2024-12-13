@@ -28,93 +28,95 @@ $items = $ItemController->listItemsByOrder($orderid);
     <title>CropCortex E-commerce</title>
     <link rel="stylesheet" href="Order.css">
     <style>
-        /* Add your styles here for the new layout */
+       .page-body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
         .order-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin: 20px;
-        }
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 700px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        .order-card {
-            width: 70%;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: left;
-        }
-
-        .order-card h3 {
+        .order-header {
+            text-align: center;
+            font-size: 28px;
+            color: ##eaf4ff;
             margin-bottom: 15px;
-            color: #333;
         }
 
-        .order-card p {
-            margin: 5px 0;
+        .no-items-message {
+            text-align: center;
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-top: 20px;
         }
 
-        .order-card .buttons {
-            margin-top: 15px;
-        }
-
-        .order-card .buttons a {
-            text-decoration: none;
-            padding: 10px 15px;
-            color: white;
-            border-radius: 5px;
-            background-color: #ff6347; /* Tomato color for delete button */
-            transition: background-color 0.3s ease;
-        }
-
-        .order-card .buttons a:hover {
-            background-color: #ff4500; /* Darker tomato color */
-        }
-    </style>
-    <style>
-        /* Add your styles here */
-        .item-container {
+        .items-list {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 20px;
-            margin: 20px;
         }
 
         .item-card {
-            width: 70%;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: left;
+            background-color: #a5f9d8;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.2s ease-in-out;
         }
 
-        .item-card h3 {
-            margin-bottom: 15px;
-            color: #333;
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .item-card p {
+        .item-title {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+
+        .item-detail {
+            font-size: 16px;
+            color: #7f8c8d;
             margin: 5px 0;
         }
 
-        .item-card .buttons {
+        .button-container {
+            text-align: right;
             margin-top: 15px;
         }
 
-        .item-card .buttons a {
+        .back-button {
             text-decoration: none;
             padding: 10px 15px;
-            color: white;
+            color: #ffffff;
+            background-color: #66FF00;
             border-radius: 5px;
-            background-color: #ff6347; /* Tomato color for delete button */
             transition: background-color 0.3s ease;
         }
 
-        .item-card .buttons a:hover {
-            background-color: #ff4500; /* Darker tomato color */
+        .back-button:hover {
+            background-color: #3f9904;
+        }
+        .print-button {
+            text-decoration: none;
+            padding: 10px 15px;
+            color: #ffffff;
+            background-color: #c000ff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .print-button:hover {
+            background-color: #4b0064;
         }
     </style>
 </head>
@@ -171,30 +173,30 @@ $items = $ItemController->listItemsByOrder($orderid);
         </header>
      
       
-            <div class="form-container">
-    
+        <div class="order-container">
+        <h4 class="order-header">Items for Order #<?= $orderid ?></h4>
 
-        <center>
-            <h4>Items for Order #<?= $orderid ?></h4>
-            <!-- If no items found, display a message -->
-            <?php if (empty($items)): ?>
-                <p>No items found for this order.</p>
-            <?php else: ?>
-                <!-- Display the items related to the order -->
-                <div class="item-container">
-                    <?php foreach ($items as $item): ?>
-                        <div class="item-card">
-                            <h3>Item #<?= $item['itemid']; ?></h3>
-                            <p><strong>Quantity:</strong> <?= $item['quantity']; ?></p>
-                            <p><strong>Price:</strong> <?= $item['price']; ?> USD</p>
-                            <div class="buttons">
-                                <a href="listO.php">Retour</a>
-                            </div>
+        <!-- Display message if no items are found -->
+        <?php if (empty($items)): ?>
+            <p class="no-items-message">No items found for this order.</p>
+        <?php else: ?>
+            <div class="items-list">
+                <?php foreach ($items as $item): ?>
+                    <div class="item-card">
+                        <h3 class="item-title">Item #<?= $item['itemid']; ?></h3>
+                        <p class="item-detail"><strong>Quantity:</strong> <?= $item['quantity']; ?></p>
+                        <p class="item-detail"><strong>Price:</strong> <?= $item['price']; ?> USD</p>
+                        <div class="button-container">
+                            <a href="listO.php" class="back-button">Retour</a>
+                            <a href="print.php?id=<?= $item['orderid_fk']; ?>" class="print-button">Print Item</a>
+                            
+
                         </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-        </center>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
     </main>
 
     <script>
